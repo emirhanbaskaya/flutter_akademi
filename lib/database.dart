@@ -71,6 +71,11 @@ class DatabaseHelper {
     return null;
   }
 
+  Future<int> updateUser(Map<String, dynamic> user) async {
+    Database db = await database;
+    return await db.update('users', user, where: 'id = ?', whereArgs: [user['id']]);
+  }
+
   Future<int> insertModule(Map<String, dynamic> module) async {
     Database db = await database;
     return await db.insert('modules', module);
